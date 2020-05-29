@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="mainContainer" prefHeight="502.0" prefWidth="585.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.visualization.MainController">
+   <children>
+      <Button onAction="#showArrayListScreen" contentDisplay="CENTER" layoutX="223.0" layoutY="216.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="140.0" text="ArrayList" />
+      <Button onAction="#showQueueScreen" contentDisplay="CENTER" layoutX="223.0" layoutY="263.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="140.0" text="Queue" />
+      <Button onAction="#showHashTableScreen" contentDisplay="CENTER" layoutX="223.0" layoutY="311.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="140.0" text="HashTable" />
+      <Button onAction="#exitProgram" contentDisplay="CENTER" layoutX="223.0" layoutY="358.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="140.0" text="Exit" />
+      <Text layoutX="24.0" layoutY="473.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Copyright" />
+      <Text fill="#1cd03d" layoutX="175.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="OOLT Project">
+         <font>
+            <Font size="41.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>
