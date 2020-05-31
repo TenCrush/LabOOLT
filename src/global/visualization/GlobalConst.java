@@ -6,8 +6,8 @@ public class GlobalConst {
 
 
     // Queue const
-    public static final int QUEUE_WIDTH = 60;
-    public static final int QUEUE_HEIGHT = 60;
+    public static int QUEUE_WIDTH = 60;
+    public static int QUEUE_HEIGHT = 60;
     public static final int QUEUE_RADIUS = 60;
 
     //Queue animation const

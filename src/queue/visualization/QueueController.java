@@ -11,8 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
@@ -120,8 +119,30 @@ public class QueueController {
         for (int number : this.queue) {
             QueueViewModel queueView = new QueueViewModel();
             queueView.setText(String.valueOf(number));
-            this.fadeIn(queueView);
+            this.dsQueueViews.add(queueView);
         }
+
+        int maximumElement = (int) this.queueContainer.getWidth() / GlobalConst.QUEUE_WIDTH;
+
+
+        System.out.println("Full width " + this.queueContainer.getWidth());
+//        System.out.println("Number of children" +);
+        System.out.println("Number of dsQueueView" + this.dsQueueViews.size());
+        QueueViewModel first = this.dsQueueViews.poll();
+
+//        this.inputData.setText(null);
+//        this.isValid = false;
+//        this.enableStartButton();
+//        this.inputData.setDisable(true);
+//        this.enqueueValue.setDisable(true);
+//        fadeIn(first);
+
+        ButtonType loginButtonType = new ButtonType("Login", ButtonBar.ButtonData.OK_DONE);
+        Dialog<String> dialog = new Dialog<>();
+        dialog.getDialogPane().getButtonTypes().add(loginButtonType);
+        boolean disabled = false; // computed based on content of text fields, for example
+        dialog.getDialogPane().lookupButton(loginButtonType).setDisable(disabled);
+        dialog.show();
     }
 
     @FXML
@@ -142,35 +163,39 @@ public class QueueController {
     public void fadeIn(QueueViewModel queueView) {
 
         ObservableList<Node> dsChildren = this.queueContainer.getChildren();
-        queueView.setLayoutX(this.queueContainer.getWidth() - GlobalConst.QUEUE_WIDTH);
-        dsChildren.add(queueView);
+        queueView.setLayoutX(this.queueContainer.getWidth() - GlobalConst.QUEUE_WIDTH); // init location of queue visualization element
 
+        dsChildren.add(queueView);
+        int noOfChildres = dsChildren.size();
         TranslateTransition fadeInAnimation = new TranslateTransition();
         fadeInAnimation.setDuration(Duration.millis(GlobalConst.FADED_TIME));
+
+        if (noOfChildres * GlobalConst.QUEUE_WIDTH > this.queueContainer.getWidth()) { // need resize all node
+            int newSize = (int) this.queueContainer.getWidth() / noOfChildres;
+            queueView.setSize(newSize, newSize);
+        }
+        if (noOfChildres * GlobalConst.QUEUE_WIDTH > this.queueContainer.getWidth()) {
+
+            return;
+        }
         fadeInAnimation.setNode(queueView);
-        fadeInAnimation.setByX(-(this.queueContainer.getWidth() - GlobalConst.QUEUE_WIDTH - GlobalConst.VIEW_OFFSET));
+        fadeInAnimation.setByX(-(this.queueContainer.getWidth() - GlobalConst.QUEUE_WIDTH * noOfChildres - GlobalConst.VIEW_OFFSET));  //dia diem moi can di chuyen toi
+        QueueController self = this;
+        fadeInAnimation.setOnFinished(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                if (!self.dsQueueViews.isEmpty())
+                    fadeIn(self.dsQueueViews.poll());
+                else {
+                    self.inputData.setText(null);
+                    self.inputData.setDisable(false);
+                    self.enqueueValue.setDisable(false);
+                }
+
+            }
+        });
+
         fadeInAnimation.play();
-
-//        this.queueContainer.getChildren().add(queueView);
-//        set default location for queue view
-//        this.setLayoutX(container.getWidth() - GlobalConst.QUEUE_WIDTH);
-//
-//        ObservableList<Node> dsChildren = container.getChildren();
-//        dsChildren.add(this);
-//
-//        Parent parent = container.getParent();
-//        parent.getLayoutX();
-//
-//        int noOfChildren = dsChildren.size();
-//        double containerWidth = container.getWidth();
-//
-//        System.out.println("no of children :" + noOfChildren);
-//        System.out.println("length of container : " + containerWidth);
-//        System.out.println("First location container: " + container.getLayoutX());
-//        System.out.println("First location container: " + parent.getLayoutX());
-//
-
-
 
     }
 
