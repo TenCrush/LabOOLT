@@ -12,7 +12,7 @@ public class GlobalConst {
 
     //Queue animation const
     public static final int FADED_TIME = 1000;
-    public static final int VIEW_OFFSET = 20;
+    public static final int VIEW_OFFSET = 0;
 
 
 }

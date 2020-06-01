@@ -17,18 +17,34 @@
             <Font size="18.0" />
          </font>
       </Text>
-      <Button disable="true" fx:id="startBtn" onAction="#doQueueVisualize" layoutX="536.0" layoutY="140.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="74.0" text="Add a list" />
+      <Button disable="true" fx:id="startBtn" onAction="#doQueueVisualize" layoutX="536.0" layoutY="140.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="161.0" text="Add a list" />
 
 
       <Text fx:id="validateMessage" fill="#f80000" layoutX="213.0" layoutY="183.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="397.0" />
             <TextField fx:id="enqueueValue" layoutX="213.0" layoutY="188.0" onKeyReleased="#validEnqueueValue" />
 
-      <Button disable="true" layoutX="384.0" layoutY="188.0" mnemonicParsing="false" text="Enqueue" />
-      <Button disable="true" layoutX="459.0" layoutY="188.0" mnemonicParsing="false" text="Enqueue" />
-      <Button disable="true" layoutX="535.0" layoutY="188.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="74.0" text="Clear all" />
+      <Button fx:id="enqueueBtn" onAction="#enqueue" disable="true" layoutX="384.0" layoutY="188.0" mnemonicParsing="false" text="Enqueue" />
+      <Button fx:id="dequeueBtn" onAction="#dequeue"  disable="false" layoutX="459.0" layoutY="188.0" mnemonicParsing="false" text="Dequeue" />
+      <Button fx:id="clearAllBtn" onAction="#clearAll" disable="false" layoutX="535.0" layoutY="188.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="74.0" text="Clear all" />
+      <Button fx:id="peekBtn" onAction="#peekInQueue" disable="false" layoutX="622.0" layoutY="188.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="74.0" text="Peek" />
 
       <Text fx:id="alertEnqueueValue" fill="#f80000" layoutX="213.0" layoutY="232.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="397.0" />
 
+      <Pane fx:id="peekContainer" layoutX="55.0" layoutY="578.0" prefHeight="60.0" prefWidth="800.0" />
       <Pane fx:id="queueContainer" layoutX="55.0" layoutY="578.0" prefHeight="60.0" prefWidth="800.0" />
+
+      <Text fx:id="currentNoOfElementLabel" fill="#7965f8" text="Current number of element :" layoutX="213.0" layoutY="260.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="397.0" >
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+
+      <Text fx:id="currentNoOfElementTxt" fill="#82c5f8" text="0" layoutX="447.0" layoutY="260.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="397.0" >
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+
+
    </children>
 </AnchorPane>

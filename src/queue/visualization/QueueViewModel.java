@@ -15,9 +15,10 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 
-public class QueueViewModel extends StackPane {
+public class QueueViewModel extends StackPane implements Cloneable {
 
     private Rectangle queueShape;
+    private String currentText;
 
     public QueueViewModel() {
 
@@ -30,11 +31,18 @@ public class QueueViewModel extends StackPane {
         this.queueShape.setFill(Color.BLUEVIOLET.deriveColor(0, 1.2, 1, 0.6));
         this.queueShape.setStroke(Color.BLUEVIOLET);
 
+        this.queueShape.setOpacity(1);
     }
 
     public void setText(String text) {
         Text content = new Text(text);
+        this.currentText = text;
+        if (!this.getChildren().isEmpty()) this.getChildren().clear();
         this.getChildren().addAll(this.queueShape, content);
+    }
+
+    public String getText() {
+        return this.currentText;
     }
 
     public void setSize(int width, int height) {
@@ -47,6 +55,8 @@ public class QueueViewModel extends StackPane {
         this.queueShape.setFill(customizeColor);
     }
 
-
-
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
 }
