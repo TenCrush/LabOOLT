@@ -10,6 +10,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import org.omg.CORBA.Environment;
+
+import arraylist.visualization.ArrayListController;
 import queue.visualization.QueueController;
 
 import java.awt.event.ActionEvent;
@@ -20,13 +22,22 @@ public class MainController {
 
     @FXML
     private AnchorPane mainContainer;
+    private ArrayListController arraylistVisualization;
+    private QueueController queueVisualization;
 
     public void showArrayListScreen() {
-
+    	this.arraylistVisualization = new ArrayListController();
+    	try {
+    		arraylistVisualization.show();
+     		Stage ArrayListStage = (Stage) this.mainContainer.getScene().getWindow();
+     		ArrayListStage.close();
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    	}
     }
 
     public void showQueueScreen() {
-        QueueController queueVisualization = new QueueController();
+        this.queueVisualization = new QueueController();
         try {
             queueVisualization.show();
             Stage mainStage = (Stage) this.mainContainer.getScene().getWindow();
